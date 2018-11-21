@@ -5,12 +5,13 @@ import NavGroup from './NavGroup'
 import NavItem from './NavItem'
 
 class NavList extends React.PureComponent {
-  renderLink = item => {
+  renderLink = (item, dense) => {
     return (
       <NavItem
         key={item.id}
         activeLink={this.props.activeLink}
         onClick={this.props.onClick}
+        dense={dense}
         {...item}
       />
     )
@@ -22,20 +23,20 @@ class NavList extends React.PureComponent {
       activeLink={this.props.activeLink}
       {...group}
     >
-      {this.renderList(group.items)}
+      {this.renderList(group.items, true)}
     </NavGroup>
   )
 
-  renderList = items => {
+  renderList = (items, dense) => {
     return (
       <List>
-        {items.map((item, index) => item.path ? this.renderLink(item) : this.renderGroup(item, index))}
+        {items.map((item, index) => item.path ? this.renderLink(item, dense) : this.renderGroup(item, index))}
       </List>
     )
   }
 
   render() {
-    return this.renderList(this.props.items)
+    return this.renderList(this.props.items, false)
   }
 }
 

@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { MdExpandLess, MdExpandMore } from 'react-icons/md'
-import NavItem from 'components/List/ListItem'
+import { Collapse } from 'react-collapse'
+import { presets } from 'react-motion'
+import { MdArrowDropUp, MdArrowDropDown } from 'react-icons/md'
+import ListItem from 'components/List/ListItem'
 
 class NavGroup extends React.PureComponent {
   constructor(props) {
@@ -29,15 +31,16 @@ class NavGroup extends React.PureComponent {
     const { label, Icon, children } = this.props
     return (
       <React.Fragment>
-        <NavItem
+        <ListItem
           label={label}
           PrefixIcon={Icon}
-          SuffixIcon={this.state.active ? MdExpandLess : MdExpandMore}
+          SuffixIcon={this.state.active ? MdArrowDropUp : MdArrowDropDown}
           active={this.state.active}
-          onClick={() => console.log('hi')}
-        >
+          onClick={() => this.setState({ active: !this.state.active })}
+        />
+        <Collapse isOpened={this.state.active} springConfig={presets.gentle}>
           {children}
-        </NavItem>
+        </Collapse>
       </React.Fragment>
     )
   }

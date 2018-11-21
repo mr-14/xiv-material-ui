@@ -30,4 +30,11 @@ const items = [
 ]
 
 storiesOf('NavList', module)
-  .add('default', () => <NavList items={items} onClick={action('hi')} />)
+  .addDecorator(story => (
+    <div style={{ width: 300, backgroundColor: '#333', boxSizing: 'border-box' }}>
+      {story()}
+    </div>
+  ))
+  .add('default', () => (
+    <NavList items={items} onClick={action('Item clicked')} activeLink="category" />
+  ))
