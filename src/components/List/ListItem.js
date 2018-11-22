@@ -61,7 +61,6 @@ ListItem.propTypes = {
   PrefixIcon: PropTypes.any,
   SuffixIcon: PropTypes.any,
   active: PropTypes.bool,
-  activeColor: PropTypes.string,
   onClick: PropTypes.func,
   dense: PropTypes.bool,
 }
